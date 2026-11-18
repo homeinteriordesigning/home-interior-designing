@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Redirecting...</title>
+<script>
+var QR_REGISTRY = {
+  "HOME": "https://muse.ai/s/home-interior-designing-links-tl6otxpx0lxvhxb/Is6w5PiDs1BZV7kkem6n-fgcBOBllQjUiV8H9EhQlFc"
+};
+(function () {
+  var params = new URLSearchParams(window.location.search);
+  var code = (params.get("c") || params.get("go") || "").trim().toUpperCase();
+  var dest = QR_REGISTRY[code];
+  if (dest) { window.location.replace(dest); }
+})();
+</script>
+<style>
+  body { margin: 0; font-family: Arial, sans-serif; background: #f5f1e8; color: #222; text-align: center; padding: 60px 20px; }
+  .card { max-width: 420px; margin: 0 auto; background: #fff; border: 2px solid #c5a03c; border-radius: 16px; padding: 32px 24px; }
+  h1 { font-size: 22px; margin: 0 0 10px; }
+  p { font-size: 16px; color: #555; line-height: 1.5; }
+  .code { display: inline-block; background: #f5f1e8; border: 1px solid #c5a03c; border-radius: 8px; padding: 4px 12px; font-weight: bold; margin: 8px 0; }
+  a.btn { display: block; margin: 10px 0; padding: 14px; border-radius: 10px; text-decoration: none; font-weight: bold; font-size: 17px; }
+  .wa { background: #25D366; color: #fff; }
+  .call { background: #1a73e8; color: #fff; }
+</style>
+</head>
+<body>
+<div class="card">
+  <h1>Card abhi activate nahi hai</h1>
+  <p>Is QR code ke liye abhi koi page set nahi hai.<br>Card code: <span class="code" id="code">-</span></p>
+  <p>Activate karwane ke liye contact karo:</p>
+  <a class="btn wa" href="https://wa.me/917219320053">WhatsApp karo</a>
+  <a class="btn call" href="tel:+917219320053">Call karo</a>
+  <p style="font-size:13px;color:#999;">Home Interior Designing — Thane</p>
+</div>
+<script>
+  var p = new URLSearchParams(window.location.search);
+  var c = (p.get("c") || p.get("go") || "").trim().toUpperCase();
+  document.getElementById("code").textContent = c || "—";
+</script>
+</body>
+</html>
