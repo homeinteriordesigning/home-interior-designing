@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Redirecting...</title>
+<title>Card Setup — Home Interior Designing</title>
 <script>
 var QR_REGISTRY = {
   "HOME": "https://homeinteriordesigning.github.io/home-interior-designing/links/",
@@ -16,29 +16,109 @@ var QR_REGISTRY = {
 })();
 </script>
 <style>
-  body { margin: 0; font-family: Arial, sans-serif; background: #f5f1e8; color: #222; text-align: center; padding: 60px 20px; }
-  .card { max-width: 420px; margin: 0 auto; background: #fff; border: 2px solid #c5a03c; border-radius: 16px; padding: 32px 24px; }
-  h1 { font-size: 22px; margin: 0 0 10px; }
-  p { font-size: 16px; color: #555; line-height: 1.5; }
-  .code { display: inline-block; background: #f5f1e8; border: 1px solid #c5a03c; border-radius: 8px; padding: 4px 12px; font-weight: bold; margin: 8px 0; }
-  a.btn { display: block; margin: 10px 0; padding: 14px; border-radius: 10px; text-decoration: none; font-weight: bold; font-size: 17px; }
-  .wa { background: #25D366; color: #fff; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: Arial, sans-serif; background: #232323; color: #222; text-align: center; padding: 24px 16px 40px; }
+  .card { max-width: 440px; margin: 0 auto; background: #fff; border-radius: 18px; padding: 28px 22px; box-shadow: 0 0 24px rgba(197,160,60,.35); }
+  h1 { font-size: 24px; margin: 0 0 4px; color: #1a1a1a; }
+  .sub { font-size: 15px; color: #666; margin: 0 0 16px; line-height: 1.5; }
+  .code { display: inline-block; background: #f5f1e8; border: 1px solid #c5a03c; border-radius: 8px; padding: 5px 14px; font-weight: bold; font-size: 17px; margin: 4px 0 18px; }
+  .code small { color: #1a7a3a; font-weight: bold; }
+  label { display: block; text-align: left; font-size: 14px; font-weight: bold; margin: 14px 0 5px; color: #333; }
+  input, select { width: 100%; padding: 13px 12px; font-size: 16px; border: 1.5px solid #ccc; border-radius: 10px; outline: none; background: #fff; }
+  input:focus, select:focus { border-color: #c5a03c; }
+  .hint { text-align: left; font-size: 12.5px; color: #888; margin: 5px 0 0; line-height: 1.45; }
+  .req { color: #d32f2f; }
+  button.submit { width: 100%; margin-top: 20px; padding: 15px; border: none; border-radius: 12px; background: #c5a03c; color: #fff; font-size: 18px; font-weight: bold; cursor: pointer; box-shadow: 0 0 16px rgba(197,160,60,.55); }
+  button.submit:active { transform: scale(.98); }
+  a.btn { display: block; margin: 12px 0 0; padding: 13px; border-radius: 10px; text-decoration: none; font-weight: bold; font-size: 16px; }
   .call { background: #1a73e8; color: #fff; }
+  .foot { font-size: 13px; color: #999; margin-top: 18px; }
+  .ok { display: none; }
+  .ok .tick { font-size: 52px; color: #1a7a3a; line-height: 1; }
+  .ok h2 { font-size: 22px; margin: 10px 0 6px; color: #1a7a3a; }
+  .ok p { font-size: 15px; color: #555; line-height: 1.55; }
+  .nocode { display: none; }
 </style>
 </head>
 <body>
-<div class="card">
-  <h1>Card abhi activate nahi hai</h1>
-  <p>Is QR code ke liye abhi koi page set nahi hai.<br>Card code: <span class="code" id="code">-</span></p>
-  <p>Activate karwane ke liye contact karo:</p>
-  <a class="btn wa" href="https://wa.me/917219320053">WhatsApp karo</a>
-  <a class="btn call" href="tel:+917219320053">Call karo</a>
-  <p style="font-size:13px;color:#999;">Home Interior Designing — Thane</p>
+<div class="card" id="setupCard">
+  <h1>Card Setup</h1>
+  <p class="sub">Ye card abhi activate nahi hai.<br>Neeche form bharo — apna card apne business se connect karo.</p>
+  <div>Card Code: <span class="code"><span id="codeText">—</span> <small>&#10003; Attached</small></span></div>
+  <form id="setupForm" onsubmit="return submitSetup(event)">
+    <label>Business Name <span class="req">*</span></label>
+    <input id="fName" type="text" placeholder="Apne business ka naam" required>
+    <label>Email Address <span class="req">*</span></label>
+    <input id="fEmail" type="email" placeholder="aapka@email.com" required>
+    <label>Select Platform <span class="req">*</span></label>
+    <select id="fPlatform" onchange="platformChanged()">
+      <option value="Google Review" selected>Google Review</option>
+      <option value="Instagram">Instagram</option>
+      <option value="WhatsApp">WhatsApp</option>
+      <option value="Facebook">Facebook</option>
+    </select>
+    <label><span id="linkLabel">Google Review Link</span> <span class="req">*</span></label>
+    <input id="fLink" type="text" placeholder="https://g.page/r/.../review" required>
+    <p class="hint" id="linkHint">Apna Google review link kaise nikale: Google Business Profile kholo &rarr; &ldquo;Get more reviews&rdquo; &rarr; link copy karke yahan paste karo.</p>
+    <label>WhatsApp Number</label>
+    <input id="fWa" type="tel" placeholder="10-digit mobile number (optional)">
+    <button class="submit" type="submit">&#10003; Activate My Card</button>
+  </form>
+  <div class="ok" id="okBox">
+    <div class="tick">&#10003;</div>
+    <h2>Details mil gayi!</h2>
+    <p>Aapka card jald activate ho jayega.<br>Activate hote hi yehi QR aapke review page pe khulne lagega — QR dobara scan karke check karo.</p>
+  </div>
+  <a class="btn call" href="tel:+917219320053">Call karo — 72193 20053</a>
+  <p class="foot">Home Interior Designing &mdash; Thane</p>
+</div>
+<div class="card nocode" id="noCodeCard">
+  <h1>QR dobara scan karo</h1>
+  <p class="sub">Is page pe koi card code nahi mila.<br>Apne card ya sign pe bana QR dobara scan karo.</p>
+  <a class="btn call" href="tel:+917219320053">Call karo — 72193 20053</a>
+  <p class="foot">Home Interior Designing &mdash; Thane</p>
 </div>
 <script>
   var p = new URLSearchParams(window.location.search);
-  var c = (p.get("c") || p.get("go") || "").trim().toUpperCase();
-  document.getElementById("code").textContent = c || "—";
+  var CODE = (p.get("c") || p.get("go") || "").trim().toUpperCase();
+  document.getElementById("codeText").textContent = CODE || "—";
+  if (!CODE) {
+    document.getElementById("setupCard").style.display = "none";
+    document.getElementById("noCodeCard").style.display = "block";
+  }
+  var PLATFORMS = {
+    "Google Review": { label: "Google Review Link", ph: "https://g.page/r/.../review", hint: "Apna Google review link kaise nikale: Google Business Profile kholo \u2192 \u201cGet more reviews\u201d \u2192 link copy karke yahan paste karo." },
+    "Instagram": { label: "Instagram Profile Link", ph: "https://instagram.com/aapka.page", hint: "Apne Instagram page ka link paste karo." },
+    "WhatsApp": { label: "WhatsApp Number / Link", ph: "10-digit mobile number ya wa.me link", hint: "Apna WhatsApp number ya wa.me link daalo." },
+    "Facebook": { label: "Facebook Page Link", ph: "https://facebook.com/aapka.page", hint: "Apne Facebook page ka link paste karo." }
+  };
+  function platformChanged() {
+    var v = document.getElementById("fPlatform").value;
+    var d = PLATFORMS[v];
+    document.getElementById("linkLabel").textContent = d.label;
+    document.getElementById("fLink").placeholder = d.ph;
+    document.getElementById("linkHint").textContent = d.hint;
+  }
+  function submitSetup(e) {
+    e.preventDefault();
+    var name = document.getElementById("fName").value.trim();
+    var email = document.getElementById("fEmail").value.trim();
+    var plat = document.getElementById("fPlatform").value;
+    var link = document.getElementById("fLink").value.trim();
+    var wa = document.getElementById("fWa").value.trim();
+    if (!name || !email || !link) { return false; }
+    var msg = "Hi! Mera Google Review NFC Card activate karna hai.\n"
+      + "Card Code: " + CODE + "\n"
+      + "Business: " + name + "\n"
+      + "Email: " + email + "\n"
+      + "Platform: " + plat + "\n"
+      + "Link: " + link
+      + (wa ? "\nWhatsApp: " + wa : "");
+    window.open("https://wa.me/917219320053?text=" + encodeURIComponent(msg), "_blank");
+    document.getElementById("setupForm").style.display = "none";
+    document.getElementById("okBox").style.display = "block";
+    return false;
+  }
 </script>
 </body>
 </html>
